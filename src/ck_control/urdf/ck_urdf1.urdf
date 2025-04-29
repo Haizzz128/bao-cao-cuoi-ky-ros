@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="ck">
+
+  <link name="base_footprint"/>
+
+  <!-- Joint connecting base_footprint to base_link -->
+  <joint name="joint_base_footprint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.015" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0841187968335356 0.112401722324964 0.178721217481401"
+        rpy="0 0 0" />
+      <mass
+        value="9.65650931147462" />
+      <inertia
+        ixx="0.0480130155812075"
+        ixy="-2.16128335468421E-08"
+        ixz="2.86811488996925E-07"
+        iyy="0.06169044482379"
+        iyz="-1.5067102443124E-06"
+        izz="0.0163609670809155" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="camera_Link">
+    <inertial>
+      <origin
+        xyz="-5.1945E-14 2.7756E-17 -0.005992"
+        rpy="0 0 0" />
+      <mass
+        value="0.0072806" />
+      <inertia
+        ixx="1.2321E-07"
+        ixy="7.2268E-24"
+        ixz="-5.4439E-23"
+        iyy="1.2321E-07"
+        iyz="-4.9685E-23"
+        izz="1.1481E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/camera_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.2 0.2 0.2 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/camera_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="camera_joint"
+    type="fixed">
+    <origin
+      xyz="0.12225 0.0010282 0.046"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="camera_Link" />
+    <axis
+      xyz="0 0 0" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+
+  
+  <link
+    name="lidar_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5708 1.5708 0" />
+      <mass
+        value="1.2284" />
+      <inertia
+        ixx="0.00056762"
+        ixy="0.00014607"
+        ixz="7.4029E-07"
+        iyy="0.0010137"
+        iyz="2.8538E-06"
+        izz="0.0008868" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/lidar_Link.STL" />
+      </geometry>
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5708 1.5708 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/lidar_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="lidar_Link1" />
+    <child
+      link="lidar_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+    
+
+
+<link
+    name="lidar_Link1">
+    <inertial>
+      <origin
+        xyz="-0.0074835 0.010668 9.1926E-05"
+        rpy="0 0 0" />
+      <mass
+        value="1.2284" />
+      <inertia
+        ixx="0.00056762"
+        ixy="0.00014607"
+        ixz="7.4029E-07"
+        iyy="0.0010137"
+        iyz="2.8538E-06"
+        izz="0.0008868" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.012" radius = "0.026"/>
+      </geometry>
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.012" radius = "0.026"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lidar_joint1"
+    type="fixed">
+    <origin
+      xyz="0.0034645 -0.0056967 0.0656"
+      rpy="1.5708 0 0.0079677" />
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_Link1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <gazebo reference="lidar_Link1">
+  <sensor type="ray" name="lidar_sensor">
+    <pose>0 0 0 -1.5708 0 0</pose>
+    <visualize>true</visualize>
+    <update_rate>20</update_rate>
+    <ray>
+      <scan>
+        <horizontal>
+          <samples>360</samples>
+          <resolution>1</resolution>
+          <min_angle>-3.14159</min_angle>
+          <max_angle>3.14159</max_angle>
+        </horizontal>
+      </scan>
+      <range>
+        <min>0.1</min>
+        <max>30.0</max>
+        <resolution>0.01</resolution>
+      </range>
+    </ray>
+    <plugin name="lidar_controller" filename="libgazebo_ros_laser.so">
+      <topicName>/ck/scan</topicName>
+      <frameName>lidar_Link1</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+
+
+  <link
+    name="left1_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175395" />
+      <inertia
+        ixx="0.000360497756999429"
+        ixy="-8.09870282623048E-40"
+        ixz="-1.17025383189539E-18"
+        iyy="0.000360497756999429"
+        iyz="4.5364235985708E-37"
+        izz="0.00069554861350478" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/left1_wheel_Link.STL" />
+      </geometry>    
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/left1_wheel_Link.STL" />
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="left1_wheel_link_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="left1_wheel_Link1" />
+    <child
+      link="left1_wheel_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+
+
+<link
+    name="left1_wheel_Link1">
+    <inertial>
+      <origin
+        xyz="1.38777878078145E-17 2.77555756156289E-17 8.67361737988404E-19"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175395" />
+      <inertia
+        ixx="0.000360497756999429"
+        ixy="-8.09870282623048E-40"
+        ixz="-1.17025383189539E-18"
+        iyy="0.000360497756999429"
+        iyz="4.5364235985708E-37"
+        izz="0.00069554861350478" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>    
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="left1_wheel_link1_joint"
+    type="continuous">
+    <origin
+      xyz="0.093647 0.090012 0.0205"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="left1_wheel_Link1" />
+    <axis
+      xyz="0 0 -1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+  <transmission name="left1_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left1_wheel_link1_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left1_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+
+  <link
+    name="left2_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.67858" />
+      <inertia
+        ixx="0.0003605"
+        ixy="-8.0987E-40"
+        ixz="-1.1703E-18"
+        iyy="0.0003605"
+        iyz="4.5364E-37"
+        izz="0.00069555" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/left2_wheel_Link.STL" />
+      </geometry>    
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/left2_wheel_Link.STL" />
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="left2_wheel_link_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="left2_wheel_Link1" />
+    <child
+      link="left2_wheel_Link" />
+    <axis
+      xyz="0 0 -1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+
+<link
+    name="left2_wheel_Link1">
+    <inertial>
+      <origin
+        xyz="0 0 1.7347E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.67858" />
+      <inertia
+        ixx="0.0003605"
+        ixy="-8.0987E-40"
+        ixz="-1.1703E-18"
+        iyy="0.0003605"
+        iyz="4.5364E-37"
+        izz="0.00069555" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>    
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="left2_wheel_link1_joint"
+    type="continuous">
+    <origin
+      xyz="-0.093219 0.090012 0.0205"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="left2_wheel_Link1" />
+    <axis
+      xyz="0 0 -1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+  <transmission name="left2_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="left2_wheel_link1_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="left2_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+
+  <link
+    name="right1_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175396" />
+      <inertia
+        ixx="0.000360497756999429"
+        ixy="-8.09870282622094E-40"
+        ixz="-1.16725215888856E-18"
+        iyy="0.000360497756999429"
+        iyz="4.53642359857081E-37"
+        izz="0.000695548613504781" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/right1_wheel_Link.STL" />
+      </geometry>
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/right1_wheel_Link.STL" />
+      </geometry>
+    </collision>
+    <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+  </link>
+  <joint
+    name="right1_wheel_link_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="right1_wheel_Link1" />
+    <child
+      link="right1_wheel_Link" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+
+<link
+    name="right1_wheel_Link1">
+    <inertial>
+      <origin
+        xyz="0 0 2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175396" />
+      <inertia
+        ixx="0.000360497756999429"
+        ixy="-8.09870282622094E-40"
+        ixz="-1.16725215888856E-18"
+        iyy="0.000360497756999429"
+        iyz="4.53642359857081E-37"
+        izz="0.000695548613504781" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+             <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="right1_wheel_link1_joint"
+    type="continuous">
+    <origin
+      xyz="0.093645 -0.090012 0.0205"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="right1_wheel_Link1" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+  <transmission name="right1_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right1_wheel_link1_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right1_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+
+  <link
+    name="right2_wheel_Link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175395" />
+      <inertia
+        ixx="0.000360497756999428"
+        ixy="-1.55490309620423E-21"
+        ixz="6.28921963336042E-21"
+        iyy="0.000360497756999428"
+        iyz="4.64544632009739E-21"
+        izz="0.000695548613504779" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/right2_wheel_Link.STL" />
+      </geometry>
+  <material name="clearblue" >
+    <color rgba="0.1411764705882353 0.47843137254901963 0.9921568627450981 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://ck_control/meshes/right2_wheel_Link.STL" />
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="right2_wheel_link_joint"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="right2_wheel_Link1" />
+    <child
+      link="right2_wheel_Link" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+  </joint>
+
+
+<link
+    name="right2_wheel_Link1">
+    <inertial>
+      <origin
+        xyz="0 -1.38777878078145E-17 -2.77555756156289E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.678584013175395" />
+      <inertia
+        ixx="0.000360497756999428"
+        ixy="-1.55490309620423E-21"
+        ixz="6.28921963336042E-21"
+        iyy="0.000360497756999428"
+        iyz="4.64544632009739E-21"
+        izz="0.000695548613504779" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+  <material name="darkgrey" >
+    <color rgba="0.21176470588235294 0.21568627450980393 0.21568627450980393 1.0" />
+  </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+            <cylinder length = "0.015" radius = "0.045"/>
+      </geometry>
+      <surface>
+    <friction>
+      <ode>
+        <mu>1.0</mu>  <!-- Hệ số ma sát tĩnh -->
+        <mu2>1.0</mu2>  <!-- Hệ số ma sát động -->
+      </ode>
+    </friction>
+  </surface>
+    </collision>
+  </link>
+  <joint
+    name="right2_wheel_link1_joint"
+    type="continuous">
+    <origin
+      xyz="-0.093215 -0.090012 0.0205"
+      rpy="-1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="right2_wheel_Link1" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="0.1"
+      friction="0.1" />
+    <limit effort="10.0" velocity="10.0"/>
+  </joint>
+  <transmission name="right2_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <joint name="right2_wheel_link1_joint">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+  </joint>
+  <actuator name="right2_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+</transmission>
+
+
+<gazebo>
+  <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    <robotNamespace>/ck</robotNamespace>
+    <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+  </plugin>
+</gazebo>
+</robot>

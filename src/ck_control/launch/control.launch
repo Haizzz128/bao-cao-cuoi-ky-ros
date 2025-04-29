@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<launch>
+
+  <arg name="model" default="$(find ck_control)/urdf/ck_urdf2.urdf"/>
+  <arg name="rvizconfig" default="$(find ck_control)/rviz/ck_rviz.rviz"/>
+
+  <param name="robot_description" textfile="$(arg model)" />   
+  <!-- Launch gazebo -->
+  <include file="$(find ck_control)/launch/gazebo.launch">
+        <arg name="model" value="$(arg model)"/>
+  </include>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
+
+  <rosparam file="$(find ck_control)/config/steering_driver.yaml" command="load"/>
+
+  <node name="controller_manager" pkg="controller_manager" type="spawner"
+  respawn="true" output="screen" 
+   args="/ck/joint_state_controller
+         /ck/steering_drive_controller" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+  </node>
+
+  <node name="rqt_robot_steering" pkg="rqt_robot_steering" type="rqt_robot_steering">
+  <param name="default_topic" value="/ck/diff_drive_controller/cmd_vel"/> 
+  </node> 
+  
+  </launch>

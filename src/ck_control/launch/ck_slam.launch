@@ -1,0 +1,59 @@
+<launch>
+
+  <param name="use_sim_time" value="true"/>
+
+  <!-- Đặt mô hình URDF -->
+  <arg name="model" default="$(find ck_control)/urdf/ck_urdf1.urdf"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+  <!-- Khởi động Gazebo với thế giới trống -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find ck_control)/worlds/ck_world.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+  </include>
+
+  <!-- Tải mô hình robot vào Gazebo -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-urdf -model ck -param robot_description -x 0 -y 0 -z 0"/>
+
+  <!-- Xuất bản trạng thái khớp và trạng thái robot -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <!-- Tải cấu hình bộ điều khiển -->
+  <rosparam file="$(find ck_control)/config/diff_drive_controller.yaml" command="load"/>
+
+  <!-- Khởi động bộ điều khiển -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        ns="/ck" args="joint_state_controller diff_drive_controller --timeout 30"/>
+
+  <!-- Khởi động Hector SLAM -->
+  <node pkg="hector_mapping" type="hector_mapping" name="hector_mapping" output="screen">
+    <param name="pub_map_odom_transform" value="true"/>
+    <param name="map_frame" value="map"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="scan_topic" value="/ck/scan"/>
+    <param name="map_resolution" value="0.05"/>
+    <param name="map_size" value="2048"/>
+    <param name="laser_z_min_value" value="-1.0"/>
+    <param name="laser_z_max_value" value="1.0"/>
+    <param name="map_update_distance_thresh" value="0.2"/> <!-- Cập nhật bản đồ thường xuyên hơn -->
+    <param name="map_update_angle_thresh" value="0.1"/>
+  </node>
+
+  <!-- Thêm TF tĩnh từ base_link đến lidar_Link -->
+  <node pkg="tf" type="static_transform_publisher" name="base_to_lidar"
+      args="0.0034645 -0.0056967 0.0656 1.5708 0 0.0079677 base_link lidar_Link1 100"/>
+  
+
+  <!-- Khởi động RViz với cấu hình tùy chỉnh (tùy chọn) -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ck_control)/rviz/ck_rviz.rviz" required="true"/>
+
+  <!-- Khởi động teleop_twist_keyboard để điều khiển bằng bàn phím -->
+  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
+    <remap from="cmd_vel" to="/ck/diff_drive_controller/cmd_vel"/>
+  </node>
+</launch>
