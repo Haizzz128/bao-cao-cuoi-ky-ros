@@ -1,0 +1,8 @@
+prefix=/home/hai/Documents/ck/devel
+
+Name: ck_control
+Description: Description of ck_control
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

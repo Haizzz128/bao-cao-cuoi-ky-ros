@@ -1,0 +1,8 @@
+prefix=/home/hai/Documents/ck/devel
+
+Name: ck1
+Description: Description of ck1
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
